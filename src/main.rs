@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::Read;
 use std::str;
-use std::ascii::AsciiExt;
+//use std::ascii::AsciiExt;
 //use std::collections::HashMap;
 //use std::borrow::ToOwned;
 
@@ -41,19 +41,40 @@ use std::ascii::AsciiExt;
 fn main() {
    let file_name = "/home/hwu/words.db"; 
    let mut sqlite_file = File::open(file_name).unwrap();
-   let mut first_100_bytes = [0u8; 100]; 
-   let len = sqlite_file.read(&mut first_100_bytes); 
-       println!("{:?}", len);
+   let mut file_header = [0u8; 100]; 
+   let sqlite_file_size = sqlite_file.metadata().unwrap().len();
+   let len = sqlite_file.read(&mut file_header); 
+   // check the len is Ok(100);
+   println!("{:?}", len);
+   println!("{:?}", sqlite_file_size);
   // why assert_eq!(len, Ok(100)) is not right?
 
-   for byte in  &first_100_bytes[0..15] {
+   /* FAQ: how to print a byte as char
+   for byte in  &file_header[0..15] {
        println!("{}", *byte as char);
    }
-    
-   println!("{:?}",(str::from_utf8(&first_100_bytes[0..15])));
+   */
 
-   for byte in  &first_100_bytes[16..18] {
+   let header_string = str::from_utf8(&file_header[0..15]);
+
+   println!("{:?}", header_string);
+   let page_size = file_header[17] as u16
+       		    + (file_header[16] as u16) << 8u8 ;
+   println!("the page size is {}", page_size);
+   println!("{}", (sqlite_file_size)  / page_size as u64);
+   /*
+   for byte in  &file_header[16..18] {
        println!("{}", byte);
    }
+   */
+
+//   let mut page_header = [0u8; 20]; 
+ //  let page_header_len = sqlite_file.read(&mut page_header); 
+  //   let leaves = page_heaer[0..8];
+  //  let nodes = page_header[8..20];
+ /*  for byte in  &page_header[..] {
+       println!("{}", byte);
+   }
+   */
 
 }

@@ -39,7 +39,7 @@ use std::str;
 **
 */
 fn main() {
-   let file_name = "/home/hwu/words.db"; 
+   let file_name = "./data/words.db"; 
    let mut sqlite_file = File::open(file_name).unwrap();
    let mut file_header = [0u8; 100]; 
    let sqlite_file_size = sqlite_file.metadata().unwrap().len();

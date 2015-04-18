@@ -1,7 +1,7 @@
-#![feature(io)]
 use std::fs::File;
-use std::io::BufReader;
-use std::io::BufRead;
+use std::io::Read;
+use std::str;
+use std::ascii::AsciiExt;
 //use std::collections::HashMap;
 //use std::borrow::ToOwned;
 
@@ -40,13 +40,20 @@ use std::io::BufRead;
 */
 fn main() {
    let file_name = "/home/hwu/words.db"; 
-   let sqlite_file = File::open(file_name).unwrap();
-   let mut reader = BufReader::new(sqlite_file);
-   let mut first_100_bytes  = Vec::<u8>::new();
-   let len =  reader.read_until(100, &mut first_100_bytes); 
-   //for char in  first_100_bytes.bytes() {
+   let mut sqlite_file = File::open(file_name).unwrap();
+   let mut first_100_bytes = [0u8; 100]; 
+   let len = sqlite_file.read(&mut first_100_bytes); 
        println!("{:?}", len);
-       println!("{:?}", first_100_bytes);
-   //}
+  // why assert_eq!(len, Ok(100)) is not right?
+
+   for byte in  &first_100_bytes[0..15] {
+       println!("{}", *byte as char);
+   }
+    
+   println!("{:?}",(str::from_utf8(&first_100_bytes[0..15])));
+
+   for byte in  &first_100_bytes[16..18] {
+       println!("{}", byte);
+   }
 
 }

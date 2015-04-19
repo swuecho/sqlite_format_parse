@@ -1,0 +1,11 @@
+[root]
+name = "sqlite_parser"
+version = "0.1.0"
+dependencies = [
+ "sqlite 0.1.0",
+]
+
+[[package]]
+name = "sqlite"
+version = "0.1.0"
+

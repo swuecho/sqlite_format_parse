@@ -1,7 +1,4 @@
-use std::str;
-//use std::ascii::AsciiExt;
-//use std::collections::HashMap;
-//use std::borrow::ToOwned;
+
 
 /*
 **   OFFSET   SIZE    DESCRIPTION
@@ -22,17 +19,17 @@ use std::str;
 
 
 #[derive(Debug)]
-struct FileHeader<'a> {
-    header_string: &'a str,
-    page_size: u16,
-    file_format_write_version: u8,
-    file_format_read_version: u8,
-    bytes_unused_per_page: u8, 
-    max_embedded_payload_fraction: u8,
-    min_embedded_payload_fraction: u8,
-    min_leaf_palyload_fraction:u8,
-    file_change_counter: u32,
-    first_freelist_page: u32,
-    number_freelist_page: u32,
+pub struct FileHeader<'a> {
+ pub   header_string: &'a str,
+ pub   page_size: u16,
+ pub   file_format_write_version: u8,
+ pub   file_format_read_version: u8,
+ pub   bytes_unused_per_page: u8, 
+ pub   max_embedded_payload_fraction: u8,
+ pub   min_embedded_payload_fraction: u8,
+ pub   min_leaf_palyload_fraction:u8,
+ pub   file_change_counter: u32,
+ pub   first_freelist_page: u32,
+ pub    number_freelist_page: u32,
 }
 

@@ -13,4 +13,9 @@
 
 slice all elements, &array[..]
 slice serveral, &array[start..end], end is not included
+
+# is powser of two why?
+#  1 &  & = 0
+
+define IsPowerOfTwo(X) (((X)&((X)-1))==0) 
  

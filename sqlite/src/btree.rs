@@ -1,4 +1,3 @@
-mod btree;
 use std::str;
 //use std::ascii::AsciiExt;
 //use std::collections::HashMap;

@@ -1,5 +1,3 @@
-mod util;
-
 // convert 2 byte u8 to a u16
 pub fn get2byte(p: &[u8]) -> u16 {
   assert_eq!(p.len(), 2);

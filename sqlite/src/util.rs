@@ -12,6 +12,14 @@ pub fn get4byte(p: &[u8]) -> u32 {
 }
 
 
+#[test]
+fn get2byte_works() {
+    assert_eq!(get2byte(&[4,0]), 1024u16);
+}
 
+#[test]
+fn get4byte_works() {
+    assert_eq!(get4byte(&[4,0,0,0]), 67108864u32);
+}
 
 
